@@ -1,0 +1,9 @@
+Temp/
+.metadata/
+.settings/
+*/target/
+*.classpath
+*.project
+/target/
+
+*.7z
