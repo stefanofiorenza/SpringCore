@@ -1,0 +1,60 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util.xsd">
+	
+	
+	
+	
+	<bean id="JmsClient" class="com.knits.spring.common.integration.UserJmsClient" />
+	<bean id="UserRestClient" class="com.knits.spring.common.integration.UserRestClient" />
+
+	<bean id="UserDao" class="com.knits.spring.common.dao.UserDaoImpl">
+		<property name="dbUsername" value="anUserName" />	
+		<property name="dbPassword" value="aSuperSafePassword" />	
+	</bean>
+	
+	<bean id="UserServiceBean" name="UserServiceName" class="com.knits.spring.common.service.UserServiceImpl">
+		<property name="jmsClient" ref="JmsClient" />	
+		<property name="userRestClient" ref="UserRestClient" />
+		<property name="userDao" ref="UserDao" />		
+	</bean>
+	
+	
+	<bean id="ServiceCollection" class="com.knits.spring.common.service.ServiceWithCollections">
+	
+		<property name="technologySkillsList">
+			<util:list list-class="java.util.ArrayList">
+				<value>java</value>
+				<value>spring</value>
+				<value>hibernate</value>
+			</util:list>
+		</property>
+		
+		<property name="technologySkillsSet">
+			<util:set set-class="java.util.HashSet">
+				<value>java</value>
+				<value>spring</value>
+				<value>hibernate</value>
+			</util:set>
+		</property>
+		
+		<property name="technologySkillsMap">
+			<util:map>
+				<entry key="java" value="10" />
+				<entry key="spring" value="5" />
+				<entry key="hibernate" value="5" />					
+			</util:map>
+		</property>
+		
+	</bean>
+	
+
+	
+	
+	
+	
+</beans>

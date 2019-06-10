@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.knits.spring</groupId>
+    <artifactId>Spring-000-MASTER</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>Spring-100-DI</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>Spring-105-Common</module>
+  	<module>Spring-110-XmlConfiguration</module>
+  	<module>Spring-120-CP-Scanning</module>
+  	<module>Spring-130-Annotations</module>
+  	<module>Spring-140-BeanScopes</module>
+  	<module>Spring-150-BeanLifecycles</module>  
+  </modules>
+</project>
