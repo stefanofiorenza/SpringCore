@@ -12,7 +12,7 @@ import com.knits.spring.common.service.UserService;
 import com.knits.spring.common.utils.Mocks;
 
 @Slf4j
-public class DemoClasspathScanning {
+public class DemoBeanScopes {
 
 	public static void main(String[] args) {
 		

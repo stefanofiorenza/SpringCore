@@ -19,11 +19,11 @@ public class DemoXmlConfiguration {
 
 	public static void main(String[] args) {
 		
-		// demo01_getUserByType();
-		// demo02_getUserByName();		
-		// demo03_getUserByName();
-		// demo04_getUserFrom_BeanFactory();
-		//demo05_getUserFrom_ApplicationCtxImpls();		
+		demo01_getUserByType();
+		demo02_getUserById();		
+		demo03_getUserByName();
+		demo04_getUserFrom_BeanFactory();
+		demo05_getUserFrom_ApplicationCtxImpls();		
 		demo06_collectionInjection();		
 	}
 	
@@ -32,6 +32,7 @@ public class DemoXmlConfiguration {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
 		UserService userService =  context.getBean(UserService.class);
 		userService.save(Mocks.mockUser());
+		
 	}
 	
 	private static void demo02_getUserById(){

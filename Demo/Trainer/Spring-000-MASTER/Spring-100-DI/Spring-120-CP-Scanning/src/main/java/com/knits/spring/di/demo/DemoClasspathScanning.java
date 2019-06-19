@@ -13,22 +13,12 @@ import com.knits.spring.common.utils.Mocks;
 public class DemoClasspathScanning {
 
 	public static void main(String[] args) {
-		//demo01_saveUser();
-
-		demo02_collectionInjection();
+		demo01_saveUser();
 	}
 
 	private static void demo01_saveUser(){
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
 		context.getBean(UserService.class).save(Mocks.mockUser());
 	}
-	
-	
-	private static void demo02_collectionInjection(){
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
-		ServiceWithCollections service=context.getBean(ServiceWithCollections.class);
-		log.info("List: {} ",service.getTechnologySkillsList().toString());
-		log.info("Set: {} ",service.getTechnologySkillsSet().toString());
-		log.info("Map: {} ",service.getTechnologySkillsMap().toString());
-	}
+
 }

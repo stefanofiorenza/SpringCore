@@ -9,10 +9,14 @@
 	http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 	
+	
+	
+	<!--Activates annotations scanning for ALREADY registered beans -->
+	<context:annotation-config /> <!-- Necessary for @PostConstruct -->
 		
 	<bean id="serviceMessage" class="com.knits.spring.common.service.ServiceMessage" 
-		init-method="anotherInitializingMethod"
-		destroy-method="anotherBeforeDestroy"
-	/>
+		  init-method="anotherInitializingMethod"
+		destroy-method="anotherBeforeDestroy" /> 
+	
 					
 </beans>

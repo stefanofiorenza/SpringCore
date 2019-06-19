@@ -14,8 +14,8 @@ import com.knits.spring.di.config.AppConfig;
 public class DemoJavaConfiguration {
 
 	public static void main(String[] args) {
-		//demo01_saveUser();
-		demo02_collectionInjection();
+		demo01_saveUser();
+		//demo02_collectionInjection();
 
 	}
 

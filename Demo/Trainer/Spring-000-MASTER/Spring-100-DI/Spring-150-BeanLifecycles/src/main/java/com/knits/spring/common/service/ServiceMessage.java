@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class ServiceMessage { //implements InitializingBean, DisposableBean{
+public class ServiceMessage implements InitializingBean, DisposableBean{
 
 	
 	public void logMessage(String message){
@@ -21,7 +21,7 @@ public class ServiceMessage { //implements InitializingBean, DisposableBean{
 	
 	@PostConstruct
 	public void anInitializingMethod(){
-		log.info("[anInitializingMethod] ServiceMessage was just added to Spring Context.");		
+		log.info("[PostConstruct] ServiceMessage was just added to Spring Context.");		
 	}
 	
 	@PreDestroy
@@ -43,7 +43,7 @@ public class ServiceMessage { //implements InitializingBean, DisposableBean{
 
 	
 	public void anotherInitializingMethod(){
-		log.info("[anotherInitializingMethod] ServiceMessage was just added to Spring Context.");
+		log.info("[fromXmlConfiguration] ServiceMessage was just added to Spring Context.");
 	}
 	
 	

@@ -2,13 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.knits.spring</groupId>
-    <artifactId>Spring-000-MASTER</artifactId>
+    <artifactId>Spring-400</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>Spring-300-Advanced</artifactId>
-  <packaging>pom</packaging>
-  <name>Spring-300-Advanced</name>
-  <modules>
-  	<module>Spring-310-Swing</module>
-  </modules>
+  <artifactId>Spring-430-JPA</artifactId>
 </project>

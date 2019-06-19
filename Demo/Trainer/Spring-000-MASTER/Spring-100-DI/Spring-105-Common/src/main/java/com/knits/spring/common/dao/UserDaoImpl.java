@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.knits.spring.common.model.User;
 
 @Slf4j
-//@Repository
+@Repository
 public class UserDaoImpl implements UserDao {
 
 	@Getter

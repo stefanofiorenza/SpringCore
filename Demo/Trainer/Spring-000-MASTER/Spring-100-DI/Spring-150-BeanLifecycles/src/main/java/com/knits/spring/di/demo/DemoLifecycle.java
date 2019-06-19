@@ -11,25 +11,19 @@ import com.knits.spring.common.service.UserService;
 import com.knits.spring.common.utils.Mocks;
 
 @Slf4j
-public class DemoClasspathScanning {
+public class DemoLifecycle {
 
 	public static void main(String[] args) {
 		
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
 		ServiceMessage serviceMessage = context.getBean(ServiceMessage.class);
-		serviceMessage.logMessage("A message to Log");
-	
-		pauseExecutionToShowDestroyMethod();
-	}
-	
-	
-	private static void pauseExecutionToShowDestroyMethod(){
+		serviceMessage.logMessage("A message to Log");		
 		
-		try {
-			Thread.currentThread().sleep(4000L);
-		} catch (InterruptedException e) {			
-			e.printStackTrace();
-		}
+		//beans are cleaned up from context..
+		context.close();
 	}
+	
+	
+
 
 }

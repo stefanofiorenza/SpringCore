@@ -140,5 +140,6 @@
       	<module>Spring-100-DI</module>
       	<module>Spring-200-AOP</module>      	
       	<module>Spring-300-Advanced</module>
+      	<module>Spring-400</module>
       </modules>
 </project>
