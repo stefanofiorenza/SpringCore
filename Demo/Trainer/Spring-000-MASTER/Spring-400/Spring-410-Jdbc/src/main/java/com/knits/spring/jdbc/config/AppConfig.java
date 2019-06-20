@@ -8,8 +8,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import com.knits.spring.jdbc.dao.CdDao;
+import com.knits.spring.jdbc.dao.CdDaoJdbcSupportImpl;
+import com.knits.spring.jdbc.dao.CdDaoJdbcTemplate;
 import com.knits.spring.jdbc.dao.helpers.CdRowMapper;
 
 @Configuration
@@ -35,10 +39,25 @@ public class AppConfig {
 		return driverManagerDataSource;
 	}
 	
-	
 	@Bean
-	public CdRowMapper cdRowMapper(){
-		return new CdRowMapper();
+	public CdDao cdDao(DataSource datasource){
+		//return cdDaoSimpleJdbcImpl(datasource);
+		return cdDaoJdbcTemplateImpl(datasource);
+	}
+	
+	
+	private CdDao cdDaoSimpleJdbcImpl(DataSource datasource) {
+		CdDaoJdbcSupportImpl cdDao = new CdDaoJdbcSupportImpl();
+		cdDao.setDataSource(datasource);
+		return cdDao;		
+	}
+	
+	private CdDao cdDaoJdbcTemplateImpl(DataSource datasource) {
+		CdDaoJdbcTemplate cdDao = new CdDaoJdbcTemplate();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		jdbcTemplate.setDataSource(datasource);
+		cdDao.setJdbcTemplate(jdbcTemplate);
+		return cdDao;		
 	}
 	
 	
