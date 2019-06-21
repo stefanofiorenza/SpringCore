@@ -5,44 +5,54 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
+import org.springframework.stereotype.Repository;
 
 import com.knits.spring.common.model.CD;
+import com.knits.spring.jdbc.dao.helpers.CdRowMapper;
 
+import static com.knits.spring.jdbc.dao.Queries.CD_BY_ID;
+import static com.knits.spring.jdbc.dao.Queries.CD_BY_TITLE;
+
+@Repository
 public class CdDaoJdbcTemplate implements CdDao{
 
-	@Getter
-	@Setter
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private CdRowMapper cdRowMapper;
+	
+	
 	
 	@Override
 	public CD findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.queryForObject(CD_BY_ID,new Object[] { id }, cdRowMapper);			
 	}
 
 	@Override
-	public List<CD> findByTitle(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CD> findByTitle(String title) {
+		return jdbcTemplate.query(CD_BY_TITLE,new Object[] {title }, cdRowMapper);	
 	}
 
 	@Override
 	public Long save(CD newCd) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Not yet implemented");		
 	}
 
 	@Override
 	public void update(CD updatedCd) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Not yet implemented");			
 	}
 
 	@Override
 	public void delete(CD updatedCd) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Not yet implemented");		
 	}
 
 }

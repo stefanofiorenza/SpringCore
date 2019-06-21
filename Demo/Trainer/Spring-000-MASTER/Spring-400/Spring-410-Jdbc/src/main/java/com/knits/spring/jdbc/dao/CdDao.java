@@ -12,7 +12,7 @@ public interface CdDao {
 
 	public CD findById (Long id);
 	
-	public List<CD> findByTitle (Long id);
+	public List<CD> findByTitle (String title);
 	
 	public Long save (CD newCd);
 	

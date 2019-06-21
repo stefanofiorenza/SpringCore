@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.knits.spring.jdbc.dao.CdDao;
@@ -39,26 +40,23 @@ public class AppConfig {
 		return driverManagerDataSource;
 	}
 	
+	
 	@Bean
-	public CdDao cdDao(DataSource datasource){
-		//return cdDaoSimpleJdbcImpl(datasource);
-		return cdDaoJdbcTemplateImpl(datasource);
+	public CdRowMapper cdRowMapper(){
+		return new CdRowMapper();
+	}
+	
+	@Bean
+	public JdbcTemplate jdbcTemplate(DataSource datasource){
+		return new JdbcTemplate(datasource);
+	}
+	
+	@Bean
+	public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource datasource){
+		return new NamedParameterJdbcTemplate(datasource);
 	}
 	
 	
-	private CdDao cdDaoSimpleJdbcImpl(DataSource datasource) {
-		CdDaoJdbcSupportImpl cdDao = new CdDaoJdbcSupportImpl();
-		cdDao.setDataSource(datasource);
-		return cdDao;		
-	}
-	
-	private CdDao cdDaoJdbcTemplateImpl(DataSource datasource) {
-		CdDaoJdbcTemplate cdDao = new CdDaoJdbcTemplate();
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		jdbcTemplate.setDataSource(datasource);
-		cdDao.setJdbcTemplate(jdbcTemplate);
-		return cdDao;		
-	}
 	
 	
 }
