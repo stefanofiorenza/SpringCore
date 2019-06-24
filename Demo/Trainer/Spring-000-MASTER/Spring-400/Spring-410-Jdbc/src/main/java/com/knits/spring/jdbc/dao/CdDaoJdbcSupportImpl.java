@@ -28,7 +28,7 @@ public class CdDaoJdbcSupportImpl extends JdbcDaoSupport implements CdDao{
 	@Autowired
 	private DataSource dataSource;
 	
-	SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("CD");
+	
 	
 	@PostConstruct
 	public void init(){
