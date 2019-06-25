@@ -5,11 +5,5 @@
     <artifactId>Spring-000-MASTER</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>Spring-300-Advanced</artifactId>
-  <packaging>pom</packaging>
-  <name>Spring-300-Advanced</name>
-  <modules>
-  	<module>Spring-310-Swing</module>
-  	<module>Spring-370-UnitTests</module>
-  </modules>
+  <artifactId>Spring-010-Common</artifactId>
 </project>

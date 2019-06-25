@@ -132,6 +132,13 @@
 		            <version>${mockito.version}</version>
 		            <scope>test</scope>
 		        </dependency>
+		        
+		        <dependency>
+				    <groupId>org.springframework</groupId>
+				    <artifactId>spring-test</artifactId>   
+				    <scope>test</scope>
+				    <version>${version.spring}</version>
+				</dependency>
 			
 			</dependencies>
     
@@ -141,5 +148,6 @@
       	<module>Spring-200-AOP</module>      	
       	<module>Spring-300-Advanced</module>
       	<module>Spring-400</module>
+      	<module>Spring-010-Common</module>
       </modules>
 </project>
