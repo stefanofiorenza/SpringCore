@@ -14,7 +14,12 @@ public class CdRowMapper implements RowMapper<CD>{
 	public CD mapRow(ResultSet rs, int rowNum) throws SQLException {
 		CD cd = new CD();
 		cd.setArtist(rs.getString("Artist"));
-		cd.setTitle(rs.getString("Title"));		
+		cd.setTitle(rs.getString("Title"));	
+		cd.setCompany(rs.getString("company"));
+		cd.setCountry(rs.getString("country"));
+		cd.setPrice(rs.getDouble("price"));
+		cd.setQuantity(rs.getInt("quatity"));
+		cd.setYear(rs.getInt("year"));
 		return cd;
 	}
 
