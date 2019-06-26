@@ -6,4 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>Spring-430-JPA</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.knits.spring</groupId>
+  		<artifactId>Spring-405-Commons</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
