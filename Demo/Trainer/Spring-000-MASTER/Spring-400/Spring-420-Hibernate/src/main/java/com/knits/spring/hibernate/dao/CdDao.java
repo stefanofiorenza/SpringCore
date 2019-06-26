@@ -2,7 +2,7 @@ package com.knits.spring.hibernate.dao;
 
 import java.util.List;
 
-import com.knits.spring.common.model.CD;
+import com.knits.spring.hibernate.model.CD;
 
 public interface CdDao {
 

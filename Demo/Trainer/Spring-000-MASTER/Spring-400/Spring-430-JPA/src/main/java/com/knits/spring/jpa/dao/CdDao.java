@@ -2,14 +2,12 @@ package com.knits.spring.jpa.dao;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.knits.spring.common.model.CD;
+import com.knits.spring.jpa.model.CD;
 
 public interface CdDao {
 
 
-	public CD findById (Long id);
+	public com.knits.spring.jpa.model.CD findById (Long id);
 	
 	public List<CD> findByTitle (String title);
 	

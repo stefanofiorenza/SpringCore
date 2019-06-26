@@ -1,7 +1,8 @@
-package com.knits.spring.hibernate.config;
+package com.knits.spring.jpa.config;
 
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,16 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("com.knits.spring.hibernate.dao")
+@EnableTransactionManagement
+@ComponentScan("com.knits.spring.jpa.dao")
 @PropertySource("classpath:database.properties")
 public class AppConfig {
 
@@ -43,19 +50,23 @@ public class AppConfig {
 		return driverManagerDataSource;
 	}
 
-	@Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setPackagesToScan("com.knits.spring.hibernate.model");
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setHibernateProperties(hibernateProperties()); 
-        return sessionFactory;
-    }
+	 @Bean
+	   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+	      LocalContainerEntityManagerFactoryBean em= new LocalContainerEntityManagerFactoryBean();
+	      em.setDataSource(dataSource());
+	      em.setPackagesToScan(new String[] { "com.knits.spring.jpa.model" });
+	 
+	      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+	      em.setJpaVendorAdapter(vendorAdapter);
+	      em.setJpaProperties(hibernateProperties());
+	 
+	      return em;
+	   }
 	
 	@Bean
-    public PlatformTransactionManager hibernateTransactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
+    public PlatformTransactionManager hibernateTransactionManager(EntityManagerFactory emf) {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
     }
  

@@ -1,19 +1,19 @@
-package com.knits.spring.hibernate.demo;
+package com.knits.spring.jpa.demo;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.knits.spring.hibernate.config.AppConfig;
-import com.knits.spring.hibernate.dao.CdDao;
-import com.knits.spring.hibernate.model.CD;
+import com.knits.spring.jpa.config.AppConfig;
+import com.knits.spring.jpa.dao.CdDao;
+import com.knits.spring.jpa.model.CD;
 
 
 public class DemoCrudCd {
 
 	public static void main(String[] args) {		
 		
-		demoDaoImplByName("cdDaoHibernateCMT");
-		demoDaoImplByName("cdDaoHibernateBMT");		
+		demoDaoImplByName("cdDaoJpaCMT");
+		demoDaoImplByName("cdDaoJpaBMT");		
 	}
 	
 	
