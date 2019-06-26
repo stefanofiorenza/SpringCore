@@ -18,7 +18,7 @@ public class CdRowMapper implements RowMapper<CD>{
 		cd.setCompany(rs.getString("company"));
 		cd.setCountry(rs.getString("country"));
 		cd.setPrice(rs.getDouble("price"));
-		cd.setQuantity(rs.getInt("quatity"));
+		cd.setQuantity(rs.getInt("quantity"));
 		cd.setYear(rs.getInt("year"));
 		return cd;
 	}

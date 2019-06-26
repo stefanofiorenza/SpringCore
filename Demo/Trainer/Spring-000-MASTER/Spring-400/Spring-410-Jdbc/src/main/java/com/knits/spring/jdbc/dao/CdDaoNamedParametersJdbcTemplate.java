@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 import lombok.Getter;
@@ -37,8 +38,13 @@ public class CdDaoNamedParametersJdbcTemplate implements CdDao{
 	@Autowired
 	private CdRowMapper cdRowMapper;
 	
-	private SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("CD").usingGeneratedKeyColumns("id");
+	private SimpleJdbcInsert simpleJdbcInsert; 
 	
+	
+	@PostConstruct
+	public void init() {
+		simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("CD").usingGeneratedKeyColumns("id");
+	}
 	
 	@Override
 	public CD findById(Long id) {
