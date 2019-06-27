@@ -41,7 +41,7 @@ public class Test04CommonAppMockito {
 	private UserDao userDao;
 
 	
-	@InjectMocks	//inject mocks in autowired field of real class
+	@InjectMocks	//inject (already created) mocks in autowired field of real class
 	@Autowired
 	private UserService userService;
 	
@@ -50,7 +50,7 @@ public class Test04CommonAppMockito {
 	
 	 @Before
 	 public void setUp() {
-	   MockitoAnnotations.initMocks(this); //already using SpringJUnit4ClassRunner
+	   MockitoAnnotations.initMocks(this); //already using SpringJUnit4ClassRunner, need to create mocks
 	 }
 	
 	 
@@ -84,13 +84,16 @@ public class Test04CommonAppMockito {
 	 
 	 @Test
 	 public void testUser_NotInTallinn(){
+		 
+		 //given..
 		 UserDto userMock =mock(UserDto.class);
 		 when(userMock.getName()).thenReturn("Stefano Fiorenza");
 		 when(userMock.getCity()).thenReturn("Rio De Janeiro");
 		 
+		 //when...
 		 userService.save(userMock);
 		 
-		 //check mock calls
+		 //then...
 		 verify(jmsClient, never()).sendUserToJmsQueue(userMock);
 		 verify(userRestClient, times(1)).sendUserToExternalRestService(userMock);
 		 verify(userDao, times(1)).persist(userArgCaptor.capture());
