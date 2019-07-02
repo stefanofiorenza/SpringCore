@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knits.spring.jpa.model.CD;
 
 @Repository
+@Transactional
 public class CdDaoJpaBMT implements CdDao{
 
 	@Autowired
@@ -36,8 +37,12 @@ public class CdDaoJpaBMT implements CdDao{
 	@Override
 	public List<CD> findByTitle(String title) {
 		EntityManager em =entityManagerFactory.createEntityManager();
-		TypedQuery<CD> query =em.createNamedQuery("", CD.class);
-		return query.getResultList();
+		em.getTransaction().begin();
+		TypedQuery<CD> query =em.createNamedQuery("CD_ByTitle", CD.class);
+		query.setParameter("title", title);
+		List<CD> cds= query.getResultList();
+		em.getTransaction().commit();
+		return cds;
 	}
 
 	@Override
@@ -58,10 +63,13 @@ public class CdDaoJpaBMT implements CdDao{
 	}
 
 	@Override
-	public void delete(CD deleted) {
+	public void delete(CD detachedObject) {
 		EntityManager em =entityManagerFactory.createEntityManager();
 		em.getTransaction().begin();
-		em.remove(deleted);	
+		if(detachedObject.getId()!=null) {
+			CD persistent=em.find(CD.class, detachedObject.getId());
+			em.remove(persistent);	
+		}		
 		em.getTransaction().commit();			
 	}
 }

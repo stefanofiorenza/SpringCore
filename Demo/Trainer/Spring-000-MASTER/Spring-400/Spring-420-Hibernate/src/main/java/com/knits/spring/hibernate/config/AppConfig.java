@@ -16,10 +16,12 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @ComponentScan("com.knits.spring.hibernate.dao")
 @PropertySource("classpath:database.properties")
+@EnableTransactionManagement
 public class AppConfig {
 
 	private final String URL = "url";
@@ -61,26 +63,10 @@ public class AppConfig {
  
     private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty(org.hibernate.cfg.Environment.DIALECT,"org.hibernate.dialect.MySQL55Dialect");
-        hibernateProperties.setProperty(org.hibernate.cfg.Environment.SHOW_SQL,"true");
+        hibernateProperties.setProperty(org.hibernate.cfg.Environment.DIALECT, env.getProperty(HIBERNATE_DIALECT));
+        hibernateProperties.setProperty(org.hibernate.cfg.Environment.HBM2DDL_AUTO,env.getProperty(HIBERNATE_DDL));//"hibernate.hbm2ddl.auto"
+        hibernateProperties.setProperty(org.hibernate.cfg.Environment.SHOW_SQL,env.getProperty(HIBERNATE_SHOW_SQL));
         hibernateProperties.setProperty(org.hibernate.cfg.Environment.CURRENT_SESSION_CONTEXT_CLASS,"thread");
-        
-        /*
-        #org.hibernate.dialect.MySQL5InnoDBDialect
-        #org.hibernate.dialect.MySQL5Dialect
-        #org.hibernate.dialect.MySQL55Dialect
-
-        #MySQL55Dialect
-        #MySQL57Dialect
-        #MySQL57InnoDBDialect
-        #MySQL5Dialect
-        #MySQL5InnoDBDialect
-        #MySQL8Dialect
-        #MySQLDialect
-        */
-       // hibernateProperties.setProperty(org.hibernate.cfg.Environment.HBM2DDL_AUTO,env.getProperty(HIBERNATE_DDL));//"hibernate.hbm2ddl.auto"
-    //   hibernateProperties.setProperty(org.hibernate.cfg.Environment.DIALECT, env.getProperty(HIBERNATE_DIALECT));
-     //   hibernateProperties.setProperty(org.hibernate.cfg.Environment.SHOW_SQL,env.getProperty(HIBERNATE_SHOW_SQL));
         return hibernateProperties;
     }
 

@@ -2,6 +2,8 @@ package com.knits.spring.hibernate.dao;
 
 import java.util.List;
 
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
 import org.hibernate.Session;
@@ -33,13 +35,13 @@ public class CdDaoHibernateBMT implements CdDao{
 	@Override
 	public List<CD> findByTitle(String title) {
 		Session session =sessionFactory.getCurrentSession();
-		Query<CD> query =session.createNamedQuery("", CD.class);
-		/*
-		List<CDDto> results = new ArrayList<CDDto>();
-		query.getResultList().forEach( cdModel -> results.add(BeanUtils.model2Dto(cdModel) ));;
-		return results;
-		*/
-		return query.getResultList();
+		session.getTransaction().begin();
+		Query<CD> query =session.createNamedQuery("CD_ByTitle", CD.class);	
+		query.setParameter("title", title);
+		List<CD> cds= query.getResultList();
+		session.getTransaction().commit();
+		return cds;
+		
 	}
 
 	@Override
