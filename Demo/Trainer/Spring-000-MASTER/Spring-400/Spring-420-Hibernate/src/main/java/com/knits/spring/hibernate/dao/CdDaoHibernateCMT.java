@@ -19,15 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knits.spring.hibernate.model.CD;
 
 @Repository
-//@Scope(proxyMode = ScopedProxyMode.INTERFACES)
 @Transactional(propagation = Propagation.REQUIRED)
 public class CdDaoHibernateCMT implements CdDao{
 
 	@PersistenceContext
     private Session session;
 	
-	@Override
-	
+	@Override	
 	public CD findById(Long id) {			
 		return session.get(CD.class, id);		
 	}
@@ -40,7 +38,6 @@ public class CdDaoHibernateCMT implements CdDao{
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Long save(CD newCd) {		
 		return (Long)session.save(newCd);			
 	}

@@ -23,7 +23,6 @@ public class CdDaoHibernateBMT implements CdDao{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
 	public CD findById(Long id) {			
 		Session session =sessionFactory.getCurrentSession();	
 		session.getTransaction().begin();

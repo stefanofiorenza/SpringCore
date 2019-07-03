@@ -21,7 +21,6 @@ public class CdDaoJpaCMT implements CdDao{
     private EntityManager entityManager;
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
 	public CD findById(Long id) {			
 		return entityManager.find(CD.class, id);		
 	}

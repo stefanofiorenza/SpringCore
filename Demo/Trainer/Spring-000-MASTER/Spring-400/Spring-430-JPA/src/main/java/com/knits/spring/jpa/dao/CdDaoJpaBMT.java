@@ -18,14 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knits.spring.jpa.model.CD;
 
 @Repository
-@Transactional
 public class CdDaoJpaBMT implements CdDao{
 
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
 	public CD findById(Long id) {			
 		EntityManager em =entityManagerFactory.createEntityManager();
 		em.getTransaction().begin();
