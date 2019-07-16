@@ -6,6 +6,7 @@ import lombok.Data;
 public class CD {
 
 	private Long PrimaryKey;
+	private Long version;
 	private String artist;
 	private String company;
 	private String country;

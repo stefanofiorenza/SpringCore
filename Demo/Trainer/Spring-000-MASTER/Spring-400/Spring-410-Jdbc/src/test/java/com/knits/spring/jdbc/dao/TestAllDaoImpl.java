@@ -42,10 +42,25 @@ public class TestAllDaoImpl {
 	}
 	
 		
-	private static void demoDaoImplByName(String daoBeanImpl){
+	private void demoDaoImplByName(String daoBeanImpl){
 		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		CdDao cdDao= context.getBean(daoBeanImpl,CdDao.class);
-		CD cd= cdDao.findById(1l);		
-		System.out.println("Found "+cd.toString());
+				
+		CD newCd =mockCd();
+		Long cdId =cdDao.save(newCd);
+		CD cd= cdDao.findById(cdId);		
+	
+	}
+	
+	private CD mockCd() {
+		CD mock = new CD();		
+		mock.setTitle("A Mock Title");
+		mock.setArtist("A MOck Artist");
+		mock.setCompany("A Mock Company");
+		mock.setCountry("Italy");
+		mock.setPrice(20.90);
+		mock.setQuantity(12);
+		mock.setYear(2009);
+		return mock;
 	}
 }

@@ -71,6 +71,7 @@ public class CdDaoNamedParametersJdbcTemplate implements CdDao{
 		parameters.put("price", newCd.getPrice());
 		parameters.put("quantity", newCd.getQuantity());
 		parameters.put("year", newCd.getYear());
+		parameters.put("version", 0);
 
 		return simpleJdbcInsert.executeAndReturnKey(parameters).longValue();		    
 	}

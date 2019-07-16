@@ -3,7 +3,9 @@ package com.knits.spring.jdbc.dao;
 import static com.knits.spring.jdbc.dao.Queries.CD_BY_ID;
 import static com.knits.spring.jdbc.dao.Queries.CD_BY_TITLE;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -27,12 +29,14 @@ public class CdDaoJdbcSupportImpl extends JdbcDaoSupport implements CdDao{
 	
 	@Autowired
 	private DataSource dataSource;
-	
-	
+
+	private SimpleJdbcInsert simpleJdbcInsert; 
 	
 	@PostConstruct
 	public void init(){
-		this.setDataSource(dataSource);
+		this.setDataSource(dataSource);	
+		simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("CD").usingGeneratedKeyColumns("id");
+
 	}
 	
 	@Override
@@ -47,8 +51,18 @@ public class CdDaoJdbcSupportImpl extends JdbcDaoSupport implements CdDao{
 
 	@Override
 	public Long save(CD newCd) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String,Object> parameters = new HashMap<String,Object>();
+
+		parameters.put("artist", newCd.getArtist());
+		parameters.put("company", newCd.getCompany());
+		parameters.put("country", newCd.getCountry());		
+		parameters.put("price", newCd.getPrice());
+		parameters.put("quantity", newCd.getQuantity());
+	    parameters.put("title", newCd.getTitle());
+	    parameters.put("year", newCd.getYear());	
+	    parameters.put("version", 0);
+	    return simpleJdbcInsert.executeAndReturnKey(parameters).longValue();
+	
 	}
 
 	@Override
