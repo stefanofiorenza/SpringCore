@@ -1,0 +1,34 @@
+
+
+References:
+
+Guides:
+
+
+	
+	
+
+Tutorials:
+
+	MyKong:
+	https://www.mkyong.com/tutorials/spring-tutorials/
+
+
+	In 28 minutes:
+	
+
+	Java In Use:
+	https://www.javainuse.com/
+
+	Spring Core:
+	https://www.baeldung.com/spring-tutorial	
+	
+	Spring@JournalDev
+	https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial#spring-core-tutorials
+	
+	Spring @ Baeldung:	
+	https://www.baeldung.com/tag/spring-core-basics/
+	
+	
+	
+Articles:
